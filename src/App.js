@@ -1,22 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import "./App.css";
+import NavBar from "./components/navbar";
+import SignUpForm from "./components/Form/signUp";
+import MessageForm from "./components/Form/message";
+import CheckboxForm from "./components/Form/checkbox";
 
 function App() {
+  const [page, setPage] = useState(2);
+
+  const handlePage = (page) => {
+    console.log({ page });
+    setPage(page);
+  };
+
+  console.log({ initial: page });
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <NavBar selected={page} />
+        {page === 1 ? (
+          <SignUpForm form={page} onSubmit={handlePage} />
+        ) : page === 2 ? (
+          <MessageForm form={page} onSubmit={handlePage} />
+        ): (
+          <CheckboxForm form={page} onSubmit={handlePage} />
+        )}
       </header>
     </div>
   );
