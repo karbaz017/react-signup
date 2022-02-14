@@ -21,7 +21,7 @@ const NavBar = (props) => {
       <table>
         <tr>
           {sections.map((section) =>
-            selected === section.key ? (
+            section.key === selected ? (
               <th key={section.key} bgcolor="lightblue">
                 {section.key} {section.message}
               </th>
